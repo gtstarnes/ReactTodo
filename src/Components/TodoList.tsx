@@ -3,36 +3,37 @@ import { TaskList } from "../Types/types"
 
 const TodoList = () => {
     const [tasks, setTasks] = useState<TaskList[]>([])
-    const [newTask, setNewTask] = useState<TaskList>({task: '', status: false})
+    const [newTask, setNewTask] = useState<string>('')
     const [error, setError] = useState<string>('')
+  
 
     const changeNewTask = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target.value.trim();
-        setNewTask({task: input, status: false});
+        setNewTask(input)
     }
 
     const addTask = () => {
+        console.log(newTask)
         if (!handleError()) {
-            const newTasks = [...tasks, newTask]
-            setTasks(newTasks)
+            setTasks([...tasks, {task: newTask, status: false}])
         }
-        setNewTask({task: '', status: false})
+        setNewTask('')
     }
 
     const handleError = () => {
-        if (newTask.task === '') {
+        if (newTask === '') {
             setError('New tasks cannot be empty')
             return true
         } else {
             setError('')
         }
-        if (tasks.some(task => task.task.includes(newTask.task))){
+        if (tasks.some(task => task.task === newTask)){
             setError('Task already exists')
             return true
         }  else {
             setError('')
         }
-        if (newTask.task.length > 50) {
+        if (newTask.length > 50) {
             setError('New tasks cannot be more than 50 characters')
             return true
         } else {
@@ -71,7 +72,7 @@ const TodoList = () => {
   return (
     <div>
         <div className="flex flex-col text-center">
-            <input type='text' placeholder="Add a Task" onChange={changeNewTask} value={newTask.task} className="text-center h-12 pb-1 w-[100%] " />
+            <input type='text' placeholder="Add a Task" onChange={changeNewTask} value={newTask} className="text-center h-12 pb-1 w-[100%] " />
             <button onClick={addTask} className="h-8 bg-slate-500 mt-4 font-semibold">Add Task</button>
             <button className="h-8 bg-red-400 mt-2 font-semibold" onClick={removedFinishedTasks}>Remove Completed Tasks</button>
             <p className="text-red-500">{error}</p>

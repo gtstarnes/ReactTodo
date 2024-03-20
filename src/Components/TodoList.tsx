@@ -38,20 +38,20 @@ const TodoList = () => {
   
   return (
     <div>
-        <div>
-            <p>{error}</p>
-            <input type='text' placeholder="Add a Task" onChange={changeNewTask} value={newTask.task} />
-            <button onClick={addTask}>Add Task</button>
+        <div className="flex flex-col text-center">
+            <input type='text' placeholder="Add a Task" onChange={changeNewTask} value={newTask.task} className="text-center h-12 pb-1 " />
+            <button onClick={addTask} className="h-8 bg-slate-500 mt-2">Add Task</button>
+            <p className="text-red-500">{error}</p>
         </div>
-        <div>
+        <div className="mt-4 flex flex-col gap-4 text-center">
             {tasks.length === 0 ? (
                 <p>There are no more tasks to complete</p>
             ) : (
                 tasks.map(task => {
                     return (
-                        <div>
+                        <div className="grid grid-cols-3" key={task.task}>
                             <input type="checkbox" />
-                            <p>{task.task}</p>
+                            <p className={task.status ? 'line-through':''}>{task.task}</p>
                             <button>Delete</button>
                         </div>
                     )

@@ -8,14 +8,13 @@ const TodoList = () => {
   
 
     const changeNewTask = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const input = e.target.value.trim();
+        const input = e.target.value;
         setNewTask(input)
     }
 
     const addTask = () => {
-        console.log(newTask)
         if (!handleError()) {
-            setTasks([...tasks, {task: newTask, status: false}])
+            setTasks(prev => [...prev, {task: newTask.trim(), status: false}])
         }
         setNewTask('')
     }
@@ -37,31 +36,25 @@ const TodoList = () => {
         return false
     }
 
-    const changeStatus = (task: string) => {
-        const updatedTasks = tasks.map(t => {
-            if (task === t.task) {
-                return {...t, status: !t.status}
+    const changeStatus = (t: string) => {
+        setTasks(prev => prev.map(task => {
+            if (t === task.task) {
+                return {...task, status: !task.status}
             }
-            return t
-        })
-
-        setTasks(updatedTasks)
+            return task
+        }))
     }
 
     const deleteTask = (t: string) => {
-        const updatedTasks = tasks.filter(task => {
-            return task.task !== t;
-        })
-
-        setTasks(updatedTasks)
+        setTasks(prev => prev.filter(task => {
+            return task.task !== t
+        }))
     }
 
     const removeFinishedTasks = () => {
-        const updatedTasks = tasks.filter(task => {
+        setTasks(prev => prev.filter(task => {
             return task.status !== true
-        })
-
-        setTasks(updatedTasks)
+        }))
     }
   
   return (

@@ -12,21 +12,26 @@ const TodoList = () => {
     }
 
     const addTask = () => {
-        if (handleError()) {
-            return
+        if (!handleError()) {
+            const newTasks = [...tasks, newTask]
+            setTasks(newTasks)
         }
-        const newTasks = [...tasks, newTask]
-        setTasks(newTasks)
+        
+
     }
 
     const handleError = () => {
         if (newTask.task === '') {
             setError('New tasks cannot be empty')
             return true
+        } else {
+            setError('')
         }
         if (tasks.some(task => task.task.includes(newTask.task))){
             setError('Task already exists')
             return true
+        }  else {
+            setError('')
         }
         return false
     }
@@ -35,7 +40,7 @@ const TodoList = () => {
     <div>
         <div>
             <p>{error}</p>
-            <input type='text' placeholder="Add a Task" onChange={changeNewTask} />
+            <input type='text' placeholder="Add a Task" onChange={changeNewTask} value={newTask.task} />
             <button onClick={addTask}>Add Task</button>
         </div>
         <div>

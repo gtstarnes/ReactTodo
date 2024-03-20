@@ -86,7 +86,7 @@ const TodoList = () => {
                         <div className="grid grid-cols-4 gap-x-20" key={task.task}>
                             <input type="checkbox" onChange={() => changeStatus(task.task)} />
                             <p className={`${task.status ? 'line-through':''} col-span-2`}>{task.task}</p>
-                            <button onClick={() => deleteTask(task.task)} className="bg-red-500 w-[60%] rounded font-semibold ml-4">Delete</button>
+                            <button onClick={() => deleteTask(task.task)} className="bg-red-500 w-[50%] rounded font-semibold ml-4">Delete</button>
                         </div>
                     )
                 })

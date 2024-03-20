@@ -12,8 +12,23 @@ const TodoList = () => {
     }
 
     const addTask = () => {
+        if (handleError()) {
+            return
+        }
         const newTasks = [...tasks, newTask]
         setTasks(newTasks)
+    }
+
+    const handleError = () => {
+        if (newTask.task === '') {
+            setError('New tasks cannot be empty')
+            return true
+        }
+        if (tasks.some(task => task.task.includes(newTask.task))){
+            setError('Task already exists')
+            return true
+        }
+        return false
     }
   
   return (

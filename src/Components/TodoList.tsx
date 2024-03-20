@@ -45,6 +45,14 @@ const TodoList = () => {
 
         setTasks(updatedTasks)
     }
+
+    const deleteTask = (t: string) => {
+        const updatedTasks = tasks.filter(task => {
+            return task.task != t;
+        })
+
+        setTasks(updatedTasks)
+    }
   
   return (
     <div>
@@ -55,14 +63,14 @@ const TodoList = () => {
         </div>
         <div className="mt-4 flex flex-col gap-4 text-center">
             {tasks.length === 0 ? (
-                <p>There are no more tasks to complete</p>
+                <p>There are no tasks to complete</p>
             ) : (
                 tasks.map(task => {
                     return (
                         <div className="grid grid-cols-3" key={task.task}>
                             <input type="checkbox" onChange={() => changeStatus(task.task)} />
                             <p className={task.status ? 'line-through':''}>{task.task}</p>
-                            <button>Delete</button>
+                            <button onClick={() => deleteTask(task.task)}>Delete</button>
                         </div>
                     )
                 })

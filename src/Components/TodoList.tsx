@@ -32,6 +32,12 @@ const TodoList = () => {
         }  else {
             setError('')
         }
+        if (newTask.task.length > 50) {
+            setError('New tasks cannot be more than 50 characters')
+            return true
+        } else {
+            setError('')
+        }
         return false
     }
 
@@ -76,9 +82,9 @@ const TodoList = () => {
             ) : (
                 tasks.map(task => {
                     return (
-                        <div className="grid grid-cols-3" key={task.task}>
+                        <div className="grid grid-cols-4 gap-x-20" key={task.task}>
                             <input type="checkbox" onChange={() => changeStatus(task.task)} />
-                            <p className={task.status ? 'line-through':''}>{task.task}</p>
+                            <p className={`${task.status ? 'line-through':''} col-span-2`}>{task.task}</p>
                             <button onClick={() => deleteTask(task.task)} className="bg-red-500 w-[60%] rounded font-semibold ml-4">Delete</button>
                         </div>
                     )

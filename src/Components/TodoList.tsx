@@ -17,7 +17,6 @@ const TodoList = () => {
             setTasks(newTasks)
         }
         setNewTask({task: '', status: false})
-
     }
 
     const handleError = () => {
@@ -35,6 +34,17 @@ const TodoList = () => {
         }
         return false
     }
+
+    const changeStatus = (task: string) => {
+        const updatedTasks = tasks.map(t => {
+            if (task === t.task) {
+                return {...t, status: !t.status}
+            }
+            return t
+        })
+
+        setTasks(updatedTasks)
+    }
   
   return (
     <div>
@@ -50,7 +60,7 @@ const TodoList = () => {
                 tasks.map(task => {
                     return (
                         <div className="grid grid-cols-3" key={task.task}>
-                            <input type="checkbox" />
+                            <input type="checkbox" onChange={() => changeStatus(task.task)} />
                             <p className={task.status ? 'line-through':''}>{task.task}</p>
                             <button>Delete</button>
                         </div>

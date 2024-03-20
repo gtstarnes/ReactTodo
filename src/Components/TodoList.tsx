@@ -58,7 +58,7 @@ const TodoList = () => {
         const updatedTasks = tasks.filter(task => {
             return task.status != true
         })
-        
+
         setTasks(updatedTasks)
     }
   
@@ -79,7 +79,7 @@ const TodoList = () => {
                         <div className="grid grid-cols-3" key={task.task}>
                             <input type="checkbox" onChange={() => changeStatus(task.task)} />
                             <p className={task.status ? 'line-through':''}>{task.task}</p>
-                            <button onClick={() => deleteTask(task.task)}>Delete</button>
+                            <button onClick={() => deleteTask(task.task)} className="bg-red-500 w-[60%] rounded font-semibold ml-4">Delete</button>
                         </div>
                     )
                 })

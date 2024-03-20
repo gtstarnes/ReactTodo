@@ -53,12 +53,21 @@ const TodoList = () => {
 
         setTasks(updatedTasks)
     }
+
+    const removedFinishedTasks = () => {
+        const updatedTasks = tasks.filter(task => {
+            return task.status != true
+        })
+        
+        setTasks(updatedTasks)
+    }
   
   return (
     <div>
         <div className="flex flex-col text-center">
-            <input type='text' placeholder="Add a Task" onChange={changeNewTask} value={newTask.task} className="text-center h-12 pb-1 " />
-            <button onClick={addTask} className="h-8 bg-slate-500 mt-2">Add Task</button>
+            <input type='text' placeholder="Add a Task" onChange={changeNewTask} value={newTask.task} className="text-center h-12 pb-1 w-[100%] " />
+            <button onClick={addTask} className="h-8 bg-slate-500 mt-4 font-semibold">Add Task</button>
+            <button className="h-8 bg-red-400 mt-2 font-semibold" onClick={removedFinishedTasks}>Remove Completed Tasks</button>
             <p className="text-red-500">{error}</p>
         </div>
         <div className="mt-4 flex flex-col gap-4 text-center">

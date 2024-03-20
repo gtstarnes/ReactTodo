@@ -3,13 +3,15 @@ import { TaskList } from "../Types/types"
 
 const TodoList = () => {
     const [tasks, setTasks] = useState<TaskList[]>([])
-    const [newTask, setNewTask] = useState<string>('')
+    const [newTask, setNewTask] = useState<TaskList>({task: '', status: false})
     const [error, setError] = useState<string>('')
 
     const changeNewTask = (e: React.ChangeEvent<HTMLInputElement>) => {
         const input = e.target.value.trim();
-        setNewTask(input);
+        setNewTask({task: input, status: false});
     }
+
+  
   return (
     <div>
         <div>

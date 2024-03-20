@@ -11,13 +11,17 @@ const TodoList = () => {
         setNewTask({task: input, status: false});
     }
 
+    const addTask = () => {
+        const newTasks = [...tasks, newTask]
+        setTasks(newTasks)
+    }
   
   return (
     <div>
         <div>
             <p>{error}</p>
             <input type='text' placeholder="Add a Task" onChange={changeNewTask} />
-            <button>Add Task</button>
+            <button onClick={addTask}>Add Task</button>
         </div>
         <div>
             {tasks.length === 0 ? (

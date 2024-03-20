@@ -5,11 +5,16 @@ const TodoList = () => {
     const [tasks, setTasks] = useState<TaskList[]>([])
     const [newTask, setNewTask] = useState<string>('')
     const [error, setError] = useState<string>('')
+
+    const changeNewTask = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const input = e.target.value.trim();
+        setNewTask(input);
+    }
   return (
     <div>
         <div>
             <p>{error}</p>
-            <input type='text' placeholder="Add a Task"  />
+            <input type='text' placeholder="Add a Task" onChange={changeNewTask} />
             <button>Add Task</button>
         </div>
         <div>

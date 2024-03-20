@@ -8,6 +8,7 @@ const TodoList = () => {
   return (
     <div>
         <div>
+            <p>{error}</p>
             <input type='text' placeholder="Add a Task"  />
             <button>Add Task</button>
         </div>

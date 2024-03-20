@@ -24,21 +24,16 @@ const TodoList = () => {
         if (newTask === '') {
             setError('New tasks cannot be empty')
             return true
-        } else {
-            setError('')
         }
         if (tasks.some(task => task.task === newTask)){
             setError('Task already exists')
             return true
-        }  else {
-            setError('')
         }
         if (newTask.length > 50) {
             setError('New tasks cannot be more than 50 characters')
             return true
-        } else {
-            setError('')
         }
+        setError('');
         return false
     }
 

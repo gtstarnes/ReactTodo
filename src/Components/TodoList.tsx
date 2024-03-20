@@ -16,7 +16,7 @@ const TodoList = () => {
             const newTasks = [...tasks, newTask]
             setTasks(newTasks)
         }
-        
+        setNewTask({task: '', status: false})
 
     }
 
